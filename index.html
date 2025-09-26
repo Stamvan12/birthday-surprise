@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Sayang!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #2c3e50);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #e0e0e0;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glow-text {
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3), 0 0 20px rgba(236, 72, 153, 0.4);
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .fade-in {
+            animation: fadeInAnimation 1s ease-in forwards;
+        }
+
+        @keyframes fadeInAnimation {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-glow {
+            box-shadow: 0 0 10px rgba(236, 72, 153, 0.5), 0 0 20px rgba(236, 72, 153, 0.3);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+    <!-- Ganti "YOUR_MUSIC_URL.mp3" dengan link lagu kamu (misal dari Google Drive) -->
+    <audio id="bg-music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+        Browser kamu tidak mendukung elemen audio.
+    </audio>
+
+    <!-- Initial Screen -->
+    <div id="start-screen" class="text-center">
+        <h1 class="text-3xl md:text-5xl font-bold glow-text mb-6">Psst... ada sesuatu buat kamu.</h1>
+        <button id="reveal-button" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 text-xl btn-glow">
+            Klik di sini! ✨
+        </button>
+    </div>
+
+    <!-- Main Content (Initially Hidden) -->
+    <div id="main-content" class="hidden w-full max-w-4xl mx-auto py-10">
+        <div class="text-center p-6 md:p-8 rounded-xl relative">
+            
+            <!-- Music Control Button -->
+            <button id="music-toggle" class="fixed bottom-5 right-5 bg-pink-500/50 backdrop-blur-sm text-white p-3 rounded-full z-10 btn-glow focus:outline-none">
+                <!-- Ikon Volume On -->
+                <svg id="music-on-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+                <!-- Ikon Volume Off -->
+                <svg id="music-off-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" x2="17" y1="9" y2="15"/><line x1="17" x2="23" y1="9" y2="15"/></svg>
+            </button>
+
+            <!-- Header -->
+            <header class="mb-10 fade-in" style="animation-delay: 0.2s;">
+                <h1 class="text-4xl md:text-6xl font-bold glow-text mb-3">Happy Level-Up Day! 🎂</h1>
+                <p class="text-xl md:text-2xl text-pink-300">to my favorite human, ever.</p>
+            </header>
+
+            <!-- Personal Message -->
+            <section class="mb-12 fade-in" style="animation-delay: 0.4s;">
+                 <p class="text-lg max-w-2xl mx-auto leading-relaxed">
+                    Selamat ulang tahun ya, sayang. Kerasa banget ya pasti sudah berusia 26. Makasih udah jadi my literal sunshine and my biggest green flag. Bersyukur banget bisa lewatin banyak hal bareng kamu. Kamu itu bukti nyata kalau hal-hal baik itu ada. 
+                    <span class="text-pink-400 font-semibold">I'm so proud of you, fr.</span>
+                </p>
+            </section>
+
+            <!-- Memory Lane -->
+            <section class="mb-12 text-left fade-in" style="animation-delay: 0.6s;">
+                <h2 class="text-2xl font-bold text-center mb-6 glow-text">A Quick Rewind... ⏪</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Kamu bisa ganti teks di bawah ini sesuai kenangan kalian -->
+                    <div class="card p-5 rounded-lg">
+                        <h3 class="font-bold text-lg text-pink-300 mb-2">First Meet</h3>
+                        <p class="text-sm">Momen canggung tapi ngangenin pas pertama kali kita ketemu. Siapa sangka bakal sejauh ini?</p>
+                    </div>
+                    <div class="card p-5 rounded-lg">
+                        <h3 class="font-bold text-lg text-pink-300 mb-2">Our First Trip</h3>
+                        <p class="text-sm">Spontanitas yang berujung jadi salah satu core memory terbaik. Liatin sunset bareng kamu is a whole new vibe.</p>
+                    </div>
+                    <div class="card p-5 rounded-lg">
+                        <h3 class="font-bold text-lg text-pink-300 mb-2">Random Late Night Talks</h3>
+                        <p class="text-sm">Dari ngomongin mimpi sampe hal-hal random. These moments mean the world to me.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gallery Section to make page longer -->
+            <section class="mb-12 text-left fade-in" style="animation-delay: 0.7s;">
+                <h2 class="text-2xl font-bold text-center mb-6 glow-text">Gallery of Us 📸</h2>
+                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <!-- Ganti gambar placeholder ini dengan foto kalian -->
+                    <div class="card p-2 rounded-lg"><img src="https://placehold.co/400x400/1a1a2e/e0e0e0?text=Foto+1" alt="Kenangan 1" class="rounded-md w-full h-auto"></div>
+                    <div class="card p-2 rounded-lg"><img src="https://placehold.co/400x400/16213e/e0e0e0?text=Foto+2" alt="Kenangan 2" class="rounded-md w-full h-auto"></div>
+                    <div class="card p-2 rounded-lg"><img src="https://placehold.co/400x400/0f3460/e0e0e0?text=Foto+3" alt="Kenangan 3" class="rounded-md w-full h-auto"></div>
+                    <div class="card p-2 rounded-lg"><img src="https://placehold.co/400x400/2c3e50/e0e0e0?text=Foto+4" alt="Kenangan 4" class="rounded-md w-full h-auto"></div>
+                </div>
+            </section>
+
+            <!-- Wishes -->
+            <section class="fade-in" style="animation-delay: 0.8s;">
+                <h2 class="text-2xl font-bold text-center mb-4 glow-text">My Wish for You</h2>
+                <p class="text-lg max-w-2xl mx-auto">
+                    Ehem, ehem... Selamat bertambah usia Eneng, semoga di umur yang 26 ini kamu menjadi orang yang jaaaaauuuuuh lebih baik, 
+                    semoga apa yang diusahakan, diharapkan, dikhayalkan, segera terealisasikan, banyak banget momen-momen yang sudah dilewati 
+                    dan semoga masih tetap bersedia ngelewatin semuanya, tetap jadi eneng yang manja ke mas, Terimakasih sudah jadi moodbosterku setiap hari. 
+                    Semoga mulai besok dan sampai kapanpun bisa disertai hal-hal baik yang datang dalam hidup. Aamiin,
+                    But for real, you're the best part of my day 
+                    <span class="text-pink-400 font-semibold">I'm so proud of you.</span> 
+                </p>
+                <p class="mt-8 text-3xl font-bold glow-text">Ilysm 🫶</p>
+            </section>
+
+        </div>
+    </div>
+
+    <script>
+        const startScreen = document.getElementById('start-screen');
+        const mainContent = document.getElementById('main-content');
+        const revealButton = document.getElementById('reveal-button');
+        const bgMusic = document.getElementById('bg-music');
+        const musicToggle = document.getElementById('music-toggle');
+        const musicOnIcon = document.getElementById('music-on-icon');
+        const musicOffIcon = document.getElementById('music-off-icon');
+
+        revealButton.addEventListener('click', () => {
+            startScreen.style.display = 'none';
+            document.body.classList.remove('justify-center'); // Hapus justify-center agar konten mulai dari atas
+            mainContent.classList.remove('hidden');
+            mainContent.classList.add('fade-in');
+            
+            bgMusic.play().catch(error => {
+                console.log("Autoplay musik dicegah oleh browser.");
+            });
+        });
+
+        musicToggle.addEventListener('click', () => {
+            if (bgMusic.paused) {
+                bgMusic.play();
+                musicOnIcon.classList.remove('hidden');
+                musicOffIcon.classList.add('hidden');
+            } else {
+                bgMusic.pause();
+                musicOnIcon.classList.add('hidden');
+                musicOffIcon.classList.remove('hidden');
+            }
+        });
+    </script>
+
+</body>
+</html>
+
